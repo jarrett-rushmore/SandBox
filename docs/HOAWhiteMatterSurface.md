@@ -1,7 +1,13 @@
-## Step 1 - Run N4 fro Bias Field Correction
-
+## Step 1 - Run N4 for Bias Field Correction
+```bash
+N4BiasFieldCorrection -d 3 -i ../../Unrelated_100fromS1200_sMRI/118528/T1w/T1w_acpc_dc_restore.nii.gz -o 118528_t1w_N4.nii.gz
+N4BiasFieldCorrection -d 3 -i ../../Unrelated_100fromS1200_sMRI/118528/T1w/T2w_acpc_dc_restore.nii.gz -o 118528_t2w_N4.nii.gz
+```
 ## Step 2 - Run Brain Masking?
-
+```bash
+nifti_atlas csv -n 15 -o 118528_t1w_N4 -t 118528_t1w_N4.nii.gz trainingDataT1Masks-hdr.csv
+nifti_atlas csv -n 15 -o 118528_t2w_N4 -t 118528_t2w_N4.nii.gz trainingDataT2Masks-hdr.csv 
+```
 ## Step 3 - Run Freesurfer
 `recon-all -subjid <SUBJID> -all -i <SUBJID_acpc_dc_restore_N4.nii.gz -hires -parallel -openmp <n_CPU>`
 
