@@ -22,7 +22,8 @@ nifti_fs -t1 ${case}_t1w_N4.nii.gz -m ${case}_t2w_N4-mask.nii.gz -o ${case}_FS -
 
 ## Step 4 - Convert White Matter Surface to Volume
 ```bash
-mris_fill -c ${case}_FS/surf/lh.white ${case}_FS/mri/lh-white-label.mgz 
+* the -r is followed by the resolution, below it is 0.7mm, but this can be adjusted to fit need.
+mris_fill -r 0.7 ${case}_FS/surf/lh.white ${case}_FS/mri/lh-white-label.mgz 
 ```
 
 ## Step 5 - Edit WM
